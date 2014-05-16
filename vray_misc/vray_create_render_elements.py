@@ -1,4 +1,4 @@
-import maya.cmds as mc
+import maya.cmds as cmds
 import maya.mel as mel
 
 re_dict = {"diffuseChannel": ("DIFFUSE", "rawdiffuse",),
@@ -29,9 +29,9 @@ for i in x:
 
 for item in re_dict.iteritems():
     mel.eval("vrayAddRenderElement %s;" %item[0])
-    selected = mc.ls(sl=True)[0]
-    mc.rename(selected, item[1][0])
-    selected = mc.ls(sl=True)[0]
+    selected = cmds.ls(sl=True)[0]
+    cmds.rename(selected, item[1][0])
+    selected = cmds.ls(sl=True)[0]
     print selected
     if selected == "ZDEPTH":
         cmds.setAttr("%s.vray_depthClamp" %(selected), 0)
